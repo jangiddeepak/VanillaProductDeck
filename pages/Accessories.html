@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electronics Page</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      background: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h3 {
+      margin: 0;
+    }
+
+    .search-container input {
+      width: 200%;
+      height: 30px;
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      cursor: pointer;
+    }
+
+    .layout {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #fff;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .sidebar h4 {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar ul li img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    .sidebar ul li a:hover {
+      background: #e0e7ff;
+      color: #000;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .table th, .table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .table th {
+      background-color: #f2f2f2;
+    }
+
+    .button {
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .bg-blue {
+      background-color: #3182ce;
+      color: white;
+    }
+
+    .bg-green {
+      background-color: #48bb78;
+      color: white;
+    }
+
+    .ml-100 {
+      margin-left: 100px;
+    }
+
+    .button:hover {
+      opacity: 0.8;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="/index.html" style="text-decoration: none; color: black;">
+      <h3>ProductDeck</h3>
+    </a>
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search..."
+        class="search"
+      />
+      <ul id="searchSuggestions" class="search-suggestions"></ul>
+    </div>
+    <div class="profile">
+      <a href="/pages/Profile.html">
+        <img src="/assets/images/Dashboard/QkIa5tT.jpeg" alt="Profile" class="profile-pic">
+      </a>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="menu-section">
+        <h4>MENU</h4>
+        <ul>
+          <li><a href="/index.html"><img src="/assets/images/logo/DashBoard.png" alt="Dashboard">Dashboard</a></li>
+          <li><a href="/pages/Products.html"><img src="/assets/images/logo/productLogo.png" alt="Products">Products</a></li>
+          <li><a href="/pages/Categories.html"><img src="/assets/images/logo/Category.png" alt="Categories">Category</a></li>
+        </ul>
+      </div>
+      <div class="other-section">
+        <h4>OTHER</h4>
+        <ul>
+          <li><a href="/pages/loginPage.html"><img src="/assets/images/logo/Settings.png" alt="Settings">Settings</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="container">
+        <!-- Selected Products Button -->
+        <button id="selected-products-btn" class="button bg-blue">0 Selected Products</button>
+
+        <a href="/products/addproduct">
+          <button class="button bg-green ml-100">Add Product</button>
+        </a>
+
+        <!-- Product Table -->
+        <table id="products-table" class="table">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="products-list">
+            <!-- Products will be populated here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      {
+        "id": 2,
+        "title": "All new earphones with Bass booster",
+        "price": 10,
+        "description": "Earphones with enhanced bass.",
+        "images": [
+          "https://previews.123rf.com/images/mysteryshot/mysteryshot1905/mysteryshot190500020/122303271-metal-ear-buds-and-wires-on-blue-background-low-angle-with-copy-space.jpg"
+        ],
+        "category": {
+          "name": "electronics"
+        }
+      },
+      {
+        "id": 3,
+        "title": "All new Game Controller",
+        "price": 69,
+        "description": "Ergonomic game controller.",
+        "images": [
+          "https://www.shutterstock.com/shutterstock/photos/2284928237/display_1500/stock-vector-game-controller-in-vector-black-joystick-vector-illustration-gamepad-for-game-console-d-render-2284928237.jpg"
+        ],
+        "category": {
+          "name": "electronics"
+        }
+      }
+    ];
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const productsList = document.getElementById('products-list');
+      const selectedProductsBtn = document.getElementById('selected-products-btn');
+      const selectedProducts = new Set();
+
+      products.forEach(product => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><input type="checkbox" class="product-checkbox" data-id="${product.id}" /></td>
+          <td><img src="${product.images[0]}" alt="${product.title}" />${product.title}</td>
+          <td>${product.category.name}</td>
+          <td>$${product.price.toFixed(2)}</td>
+          <td>
+            <button class="edit-btn bg-blue">Edit</button>
+            <button class="button-delete">Delete</button>
+          </td>
+        `;
+        productsList.appendChild(row);
+      });
+
+      document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', (event) => {
+          const productId = parseInt(event.target.dataset.id);
+          if (event.target.checked) {
+            selectedProducts.add(productId);
+          } else {
+            selectedProducts.delete(productId);
+          }
+          selectedProductsBtn.textContent = `${selectedProducts.size} Selected Products`;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

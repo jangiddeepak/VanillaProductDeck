@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProductDeck - Add Product</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .navbar h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar .search {
+      width: 40%;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+    }
+
+    .navbar .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 16rem;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      padding: 1.5rem;
+      position: fixed;
+      top: 70px;
+      bottom: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar h4 {
+      font-size: 0.9rem;
+      color: gray;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      padding: 0.5rem 1rem;
+      display: block;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 18rem;
+      padding: 2rem;
+      margin-top: 150px;
+      background-color: #f9f9f9;
+      min-height: calc(100vh - 70px);
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    label {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .success-message {
+      color: #28a745;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .error-message {
+      color: #dc3545;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h3>ProductDeck</h3>
+    <input type="text" placeholder="Search..." class="search">
+    <img src="https://via.placeholder.com/40" alt="Profile" class="profile-pic">
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="menu-section">
+      <h4>MENU</h4>
+      <ul>
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/pages/Products.html">Products</a></li>
+        <li><a href="#">Category</a></li>
+      </ul>
+    </div>
+    <div class="other-section">
+      <h4>OTHER</h4>
+      <ul>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="container">
+      <h1>Add Product</h1>
+      <form id="productForm">
+        <div class="success-message" style="display: none;">Product added successfully!</div>
+        <div class="error-message" style="display: none;">An error occurred. Please try again.</div>
+
+        <label for="title">Product Name</label>
+        <input type="text" id="title" name="title" placeholder="Enter product name" required />
+
+        <label for="description">Product Description</label>
+        <textarea id="description" name="description" placeholder="Enter product description" required></textarea>
+
+        <label for="price">Product Price ($)</label>
+        <input type="number" id="price" name="price" placeholder="Enter product price" required />
+
+        <label for="images">Product Image</label>
+        <input type="file" id="images" name="images" required />
+
+        <button type="submit">Add Product</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('productForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Product added successfully!');
+      form.reset();
+    });
+  </script>
+</body>
+</html>

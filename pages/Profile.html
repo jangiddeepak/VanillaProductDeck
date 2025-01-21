@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Impressive dashboard for new products">
+  <title>Profile</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script>
+    function handlePasswordChange() {
+      var newPassword = document.getElementById("newPassword").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      if (newPassword === confirmPassword) {
+        alert("Password changed successfully!");
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirmPassword").value = "";
+      } else {
+        alert("Passwords do not match!");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-xl border border-gray-200">
+    <!-- Profile Header -->
+    <div class="flex items-center mb-6">
+      <img
+        src="/assets/images/Dashboard/QkIa5tT.jpeg"
+        alt="Profile"
+        class="w-28 h-28 rounded-full border-4 border-indigo-500 mr-4"
+      />
+      <div>
+        <h2 class="text-3xl font-semibold text-gray-800">Deepak Jangid</h2>
+      </div>
+    </div>
+
+    <!-- Email (unchangeable) -->
+    <div class="mb-6">
+      <label for="email" class="block text-sm font-medium text-gray-600">
+        Email:
+      </label>
+      <p class="text-lg text-gray-800 mt-1" id="email">
+        royalxtic@gmail.com
+      </p>
+    </div>
+
+    <!-- Password Change Section -->
+    <div class="mb-6">
+      <label for="newPassword" class="block text-sm font-medium text-gray-600">
+        New Password:
+      </label>
+      <input
+        type="password"
+        id="newPassword"
+        placeholder="Enter new password"
+        class="w-full mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+      />
+    </div>
+
+    <div class="mb-6">
+      <label for="confirmPassword" class="block text-sm font-medium text-gray-600">
+        Confirm New Password:
+      </label>
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm new password"
+        class="w-full mt-2 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+      />
+    </div>
+
+    <button
+      onclick="handlePasswordChange()"
+      class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+    >
+      Change Password
+    </button>
+
+    <a href="/pages/loginPage.html">
+      <button
+        class="w-32 bg-red-600 text-white py-2 mt-4 ml-[8rem] rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+      >
+        Logout
+      </button>
+    </a>
+  </div>
+</body>
+</html>

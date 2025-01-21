@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <style>
+    * {
+      box-sizing: border-box; /* Ensures padding and border are included in the element's total width/height */
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%; /* Ensure full width */
+      height: 100%; /* Ensure full height */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .navbar {
+      width: 100%;
+      background-color: #fff; /* White background for header */
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed; /* Keep navbar fixed at the top */
+      top: 0;
+      left: 0;
+      z-index: 10; /* Ensure navbar stays above other elements */
+    }
+
+    .navbar h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar .search {
+      width: 40%;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+    }
+
+    .navbar .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 16rem;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: fixed;
+      top: 70px; /* Adjust to fit navbar height */
+      bottom: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar h4 {
+      font-size: 0.9rem;
+      color: gray;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      padding: 0.5rem 1rem;
+      display: block;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 18rem; /* Adjust based on sidebar width */
+      padding: 1.5rem;
+      margin-top: 70px; /* Adjust to fit navbar height */
+      background-color: #f9f9f9;
+      min-height: calc(100vh - 70px); /* Adjust based on navbar height */
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #333;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .button:hover {
+      background-color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+    }
+
+    .actions button {
+      margin-right: 5px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .actions .edit {
+      background-color: #007bff;
+    }
+
+    .actions .edit:hover {
+      background-color: #0056b3;
+    }
+
+    .actions .delete {
+      background-color: #dc3545;
+    }
+
+    .actions .delete:hover {
+      background-color: #b02a37;
+    }
+
+    .AddButton {
+      background-color: green;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h3>ProductDeck</h3>
+    <input type="text" placeholder="Search..." class="search">
+    <img src="https://via.placeholder.com/40" alt="Profile" class="profile-pic">
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="menu-section">
+      <h4>MENU</h4>
+      <ul>
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/pages/Products.html">Products</a></li>
+        <li><a href="/pages/Caregories.html">Category</a></li>
+      </ul>
+    </div>
+    <div class="other-section">
+      <h4>OTHER</h4>
+      <ul>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="container">
+      <h1>Products</h1>
+      <!-- Add Product Button -->
+      <a href="/pages/addProducts.html" class="AddButton">Add Product</a>
+
+      <!-- Selected Products Button -->
+      <button id="selectedProductsBtn" class="button">0 Selected Products</button>
+
+      <!-- Product Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody">
+          <!-- Products will be dynamically populated here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/scripts/products.js"></script>
+</body>
+</html>

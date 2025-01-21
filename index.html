@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProductDeck Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .header {
+      background: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .header h3 {
+      margin: 0;
+    }
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      cursor: pointer;
+    }
+
+    /* Search Styles */
+    .search-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+    }
+    .search-container input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      font-size: 16px;
+    }
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 10;
+    }
+    .search-suggestions li {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .search-suggestions li:hover {
+      background-color: #e0e7ff;
+    }
+
+    /* Layout Styles */
+    .layout {
+      display: flex;
+      flex: 1;
+    }
+    .sidebar {
+      width: 250px;
+      background: #fff;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .sidebar h4 {
+      margin-bottom: 10px;
+      color: #555;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar ul li img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    .sidebar ul li a:hover {
+      background: #e0e7ff;
+      color: #000;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .main-content .page-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .card p {
+      color: #777;
+      margin: 5px 0 15px;
+    }
+    .card button {
+      padding: 10px 20px;
+      border: none;
+      background: #4f46e5;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .card button:hover {
+      background: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header (Navbar) -->
+    <div class="header">
+      <a href="/index.html" style="text-decoration: none; color: black;">
+        <h3>ProductDeck</h3>
+      </a>
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search..."
+          class="search"
+        />
+        <ul id="searchSuggestions" class="search-suggestions"></ul>
+      </div>
+      <div class="profile">
+        <a href="/pages/Profile.html">
+          <img src="/assets/images/Dashboard/QkIa5tT.jpeg" alt="Profile" class="profile-pic">
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="layout">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="menu-section">
+          <h4>MENU</h4>
+          <ul>
+            <li><a href="/index.html"><img src="/assets/images/logo/DashBoard.png" alt="Dashboard">Dashboard</a></li>
+            <li><a href="/pages/Products.html"><img src="/assets/images/logo/productLogo.png" alt="Products">Products</a></li>
+            <li><a href="/pages/Caregories.html"><img src="/assets/images/logo/Category.png" alt="Categories">Category</a></li>
+          </ul>
+        </div>
+        <div class="other-section">
+          <h4>OTHER</h4>
+          <ul>
+            <li><a href="/pages/Settings.html"><img src="/assets/images/logo/Settings.png" alt="Settings">Settings</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <h1 class="page-title">Dashboard</h1>
+        <div id="dashboard" class="dashboard">
+          <!-- Cards will be dynamically loaded -->
+          <div class="card">
+            <img src="/assets/images/Dashboard/QkIa5tT.jpeg" alt="Card 1">
+            <h3>Clothes</h3>
+            <p>Products</p>
+            <a href="/pages/Clothes.html">
+            <button>View Products</button></a>
+          </div>
+          <div class="card">
+            <img src="/assets/images/Dashboard/ZANVnHE.jpeg" alt="Card 2">
+            <h3>Electronics</h3>
+            <p>Products</p>
+            <a href="/pages/electronicsPage.html">
+            <button>View Products</button>
+          </a>
+          </div>
+          <div class="card">
+            <img src="/assets/images/Dashboard/accesoriesDashboard.jpg" alt="Card 3">
+            <h3>Accessories</h3>
+            <p>Products</p>
+            <a href="/pages/Accessories.html">
+            <button>View Products</button>
+          </a>
+          </div>
+          <div class="card">
+            <img src="/assets/images/Dashboard/furntureDashboard.jpg" alt="Card 4">
+            <h3>Furniture</h3>
+            <p>Products</p>
+            <a href="/pages/FurnPage.html">
+            <button>View Products</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      const searchSuggestions = document.getElementById('searchSuggestions');
+      let allProducts = [];
+
+      // Fetch products on page load
+      fetch('https://api.escuelajs.co/api/v1/products')
+        .then(response => response.json())
+        .then(data => {
+          allProducts = data;
+        })
+        .catch(err => console.error('Error fetching products:', err));
+
+      // Filter results based on input
+      const filterResults = (query) => {
+        if (!query) return [];
+        return allProducts.filter(product =>
+          product.title.toLowerCase().includes(query.toLowerCase())
+        );
+      };
+
+      // Handle input change
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value;
+        searchSuggestions.innerHTML = ''; // Clear suggestions
+
+        if (query) {
+          const results = filterResults(query);
+          results.forEach(product => {
+            const li = document.createElement('li');
+            li.textContent = product.title;
+            li.addEventListener('click', () => {
+              // Redirect to product details page with product ID in URL
+              window.location.href = `/pages/SearchProductPAge.html?id=${product.id}`;
+            });
+            searchSuggestions.appendChild(li);
+          });
+        }
+      });
+
+      // Close suggestions when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+          searchSuggestions.innerHTML = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
